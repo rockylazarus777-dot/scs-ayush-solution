@@ -1,0 +1,13 @@
+{
+  "name": "SCS Ayush Solution",
+  "short_name": "SCS Ayush",
+  "description": "Your Trusted Healthcare Service Partner",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1628",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
