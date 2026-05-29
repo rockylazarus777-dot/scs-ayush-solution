@@ -7,7 +7,7 @@ import {
   MessageSquare, Users, FileText, Star, ArrowRight,
   TrendingUp, Clock, CheckCircle, AlertCircle
 } from "lucide-react";
-import { createAdminSupabaseClient } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { formatRelativeDate } from "@/lib/utils";
 
 interface DashboardStats {
@@ -83,9 +83,7 @@ export default function AdminDashboardClient() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const supabase = createAdminSupabaseClient();
-
-        const [
+const [
           { count: enquiriesCount },
           { count: newCount },
           { count: appsCount },

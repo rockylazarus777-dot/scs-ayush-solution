@@ -6,7 +6,7 @@ import {
   Search, Filter, Download, Phone, Mail, MessageSquare,
   Clock, ChevronDown, X, Eye, Edit2, Trash2
 } from "lucide-react";
-import { createAdminSupabaseClient } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { formatDate, formatRelativeDate } from "@/lib/utils";
 import type { Enquiry } from "@/types/database";
 
@@ -30,7 +30,6 @@ export default function EnquiriesClient() {
 
   const fetchEnquiries = useCallback(async () => {
     try {
-      const supabase = createAdminSupabaseClient();
       let query = supabase
         .from("enquiries")
         .select("*")
@@ -72,8 +71,7 @@ export default function EnquiriesClient() {
   const updateStatus = async (id: string, status: string) => {
     setUpdatingId(id);
     try {
-      const supabase = createAdminSupabaseClient();
-      await supabase.from("enquiries").update({ status }).eq("id", id);
+      await (supabase as any).from("enquiries").update({ status }).eq("id", id);
       setEnquiries((prev) => prev.map((e) => e.id === id ? { ...e, status: status as Enquiry["status"] } : e));
       if (selectedEnquiry?.id === id) {
         setSelectedEnquiry((prev) => prev ? { ...prev, status: status as Enquiry["status"] } : null);

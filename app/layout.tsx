@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -152,11 +153,13 @@ export default function RootLayout({
           </noscript>
         )}
         <LenisProvider>
-          <AnalyticsProvider>
-            <Navbar />
-            <div className="pt-0">{children}</div>
-            <Footer />
-          </AnalyticsProvider>
+          <Suspense fallback={null}>
+            <AnalyticsProvider>
+              <Navbar />
+              <div className="pt-0">{children}</div>
+              <Footer />
+            </AnalyticsProvider>
+          </Suspense>
         </LenisProvider>
         <Toaster
           position="top-right"
